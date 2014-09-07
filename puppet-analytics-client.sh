@@ -30,11 +30,7 @@ for moduledir in ${PA_MODULEPATH//:/ } ; do
             author=`echo $name| cut -d "-" -f 1`
             modulename=`echo $name| cut -d "-" -f 2`
 
-            curl -XPOST "${PA_SERVER}/api/1/module_send" -H "Content-Type: application/json" -d "'{
-            \"author\": \"$author\",
-            \"name\": \"$modulename\",
-            \"tags\": \"version=$version,purpose=$PA_PURPOSE\"
-            }'"
+            echo curl -XPOST  -H \"Content-Type: application/json\" -d "'{ \"author\": \"$author\",  \"name\": \"$modulename\", \"tags\": \"version=$version,purpose=$PA_PURPOSE\" }'" \"${PA_SERVER}/api/1/module_send\" | sh >/dev/null 2>&1
 
         done
 
