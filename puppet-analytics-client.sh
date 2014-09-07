@@ -22,7 +22,7 @@ echo PA_API_VER: $PA_API_VER
 echo ENVIRONMENT: $PA_ENVIRONMENT
 echo MODULEPATH: $PA_MODULEPATH
 
-for moduledir in `echo $PA_MODULEPATH | sed 's/:/ /g'` ; do
+for moduledir in ${PA_MODULEPATH//:/ } ; do
     if [ -d $moduledir ]; then
         for metadatafile in `ls $moduledir/*/metadata.json` ; do
             name=`cat $metadatafile | jq '. name' | tr -d '"' | sed 's/\//-/'`
